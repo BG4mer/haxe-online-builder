@@ -1,11 +1,10 @@
 let editor;
 let files = {
-    "Main.hx": "class Main {\n\tstatic function main() {\n\t\ttrace('Hello from mobile compiler!');\n\t}\n}"
+    "Main.hx": "class Main {\n\tstatic function main() {\n\t\ttrace('Hello from editor!');\n\t}\n}"
 };
 
 let currentFile = "Main.hx";
 
-// Monaco loader
 require.config({ paths: { vs: "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs" } });
 
 require(["vs/editor/editor.main"], function () {
