@@ -1,9 +1,47 @@
+const fileInput = document.createElement("input");
+fileInput.type = "file";
+fileInput.accept = ".zip";
+fileInput.style.display = "none";
+document.body.appendChild(fileInput);
+
 document.getElementById("compileBtn").onclick = () => {
-    log("Preparing build...");
-    setTimeout(() => log("Checking files..."), 700);
-    setTimeout(() => log("Simulating Haxe compile..."), 1500);
-    setTimeout(() => log("NOTE: No backend connected yet."), 2200);
-    setTimeout(() => log("Your site works! Add a backend to compile real FNF builds."), 3000);
+    fileInput.click();
+};
+
+fileInput.onchange = async () => {
+    const file = fileInput.files[0];
+    if (!file) return;
+
+    log("Uploading ZIP...");
+    
+    const form = new FormData();
+    form.append("zip", file);
+
+    try {
+        let res = await fetch("https://YOUR-RAILWAY-URL/compile", {
+            method: "POST",
+            body: form
+        });
+
+        if (!res.ok) {
+            log("Server error: " + res.status);
+            return;
+        }
+
+        log("Build completed. Downloading...");
+
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "build.zip";
+        a.click();
+
+        log("Downloaded build.zip!");
+    } catch (err) {
+        log("Error: " + err);
+    }
 };
 
 function log(msg) {
