@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    background: #1e1e1e;
+    color: white;
+    font-family: sans-serif;
+    overflow: hidden;
+}
+
+#topbar {
+    height: 40px;
+    background: #252526;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.title {
+    flex: 1;
+    font-size: 14px;
+}
+
+#compileBtn {
+    background: #0e639c;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 3px;
+    color: white;
+}
+
+#layout {
+    display: flex;
+    height: calc(100vh - 40px);
+}
+
+#filePanel {
+    width: 150px;
+    background: #333;
+    padding: 6px;
+    overflow-y: auto;
+}
+
+#fileList div {
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#fileList div:hover {
+    background: #444;
+}
+
+#editor {
+    flex: 1;
+    height: 100%;
+}
+
+#console {
+    width: 30%;
+    background: #111;
+    padding: 6px;
+    border-left: 2px solid #000;
+}
+
+#output {
+    white-space: pre-wrap;
+    font-family: monospace;
+}
